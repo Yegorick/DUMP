@@ -1,11 +1,14 @@
-from tkinter import DISABLED, Canvas, Button, LEFT, DISABLED
 from PIL import ImageTk
 
+from tkinter import DISABLED, Canvas, Button, LEFT
+
+
 class Hand(Canvas):
-    def __init__(self, cards, img=None) -> None:
+    def __init__(self, cards, table=None, img=None) -> None:
         super().__init__()
         self.cards = list(cards)
-        print(self.cards)
+        self.table = table
+
         if not img:
             self.imgs = [ImageTk.PhotoImage(file=f"imgs/{card.mast}/{card.value}.jpg") for card in self.cards]
         else:
@@ -19,7 +22,7 @@ class Hand(Canvas):
             btn.pack(padx=10, pady=10, side=LEFT)
 
     def get_card(self, i):
-        self.cards[i].move()
+        self.table.show_cards(self.cards[i].move())
         self.btns[i].destroy()
 
 
@@ -27,20 +30,14 @@ class Hand(Canvas):
         for card in cards:
             self.cards.append(card)
     
-    def move(self, card=None):
-        if card:
-            ...
-        else:
-            
-            print(self.cards.pop())
-    
+   
     def __str__(self) -> str:
         return str(self.cards)
 
 
 class PCHand(Hand):
-    def __init__(self, *cards) -> None:
-        super().__init__(*cards)
+    def __init__(self, cards, img) -> None:
+        super().__init__(cards, img=img)
         self.cards.sort(key=self.sort_by_value)
         for btn in self.btns:
             btn["state"] = DISABLED
@@ -49,4 +46,4 @@ class PCHand(Hand):
         return card.value
 
     def move(self):
-        print(self.cards.pop(0))
+        return self.cards.pop(0)

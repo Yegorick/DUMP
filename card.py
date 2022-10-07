@@ -5,7 +5,7 @@ class Card:
         self.value = value
 
     def move(self):
-        print(self.koz, self.mast, self.value)
+        return (self.koz, self.mast, self.value)
         
     def __str__(self) -> str:
         return self.mast + " " + str(self.value)
