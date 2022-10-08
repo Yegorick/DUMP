@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, LEFT
+from tkinter import Tk, Button, LEFT, CENTER, NW
 from PIL import ImageTk
 
 from hands import *
@@ -15,15 +15,17 @@ pl_hand, comp_hand = new_game()
 
 window = App()
 
-table = Table(800, 300)
-player = Hand(pl_hand, table)
 computer = PCHand(comp_hand, img="back")
+table = Table(800, 300, "brown", computer)
+player = Hand(pl_hand, table)
+
+table.pl = player
 
 computer.pack()
-table.pack()
+table.pack(anchor=CENTER, expand=1)
 player.pack()
 
-table.create_image(10, 100, image=ImageTk.PhotoImage(file="imgs/back.jpg"))
+
 window.mainloop()
 
 
