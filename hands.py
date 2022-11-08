@@ -8,9 +8,16 @@ class Hand(Canvas):
         super().__init__()
         self.cards = list(cards)
         self.table = table
+        self.btns = None
 
         self.memory = []
 
+        self.draw_cards(img)
+
+    def draw_cards(self, img):
+        if self.btns:
+            for btn in self.btns:
+                btn.destroy()
         if not img:
             self.imgs = [ImageTk.PhotoImage(file=f"imgs/{card.mast}/{card.value}.jpg") for card in self.cards]
         else:
@@ -25,9 +32,10 @@ class Hand(Canvas):
     def get_card(self, i):
         self.table.show_cards(self.cards[i].move())
         self.btns[i].destroy()
-        #self.btns.pop(i)
+        self.cards.pop(i)
         self.memory.append(self.btns[i])
         self.check()
+
 
     def check(self):
         btns = []
@@ -69,3 +77,8 @@ class PCHand(Hand):
         self.btns.pop(0)
         print(card)
         return card
+    
+    def draw_cards(self, img):
+        super().draw_cards(img)
+        for btn in self.btns:
+            btn["state"] = DISABLED

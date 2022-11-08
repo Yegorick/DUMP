@@ -2,13 +2,17 @@ from random import randint
 
 from card import *
 
-def new_game():
-    deck = {1:{"mast":"Черви", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
+deck = {
+        1:{"mast":"Черви", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
         2:{"mast":"Буби", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
         3:{"mast":"Пики", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
-        4:{"mast":"Крести", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},}
+        4:{"mast":"Крести", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]}
+        }
 
-    koz = randint(1, 4)
+koz = randint(1, 4)
+
+def new_game():
+    global deck, koz
 
     pl_hand = []
     comp_hand = []

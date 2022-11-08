@@ -8,7 +8,6 @@ from table import Table
 class App(Tk):
     def __init__(self, cards: list = None) -> None:
         super().__init__()
-        
 
 
 pl_hand, comp_hand = new_game()
@@ -27,5 +26,3 @@ player.pack()
 
 
 window.mainloop()
-
-
