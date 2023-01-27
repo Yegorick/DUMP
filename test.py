@@ -1,44 +1,23 @@
-class Card:
-    def __init__(self, mast, value, koz = False,) -> None:
-        self.koz = koz
-        self.mast = mast
-        self.value = value
-        
-    def __str__(self) -> str:
-        return self.mast + str(self.value)
-    
-    def __repr__(self) -> str:
-        return self.mast + " " + str(self.value)
-    
-    def __lt__(self, other):
-        if not isinstance(other, Card):
-            raise TypeError("Нужно передать карту")
-        
-        return self.value < other.value
-    
-    def __gt__(self, other):
-        if not isinstance(other, Card):
-            raise TypeError("Нужно передать карту")
-        
-        return self.value > other.value
-        
-    def __eq__(self, other):
-        if not isinstance(other, Card):
-            raise TypeError("Нужно передать карту")
-        
-        return self.value == other.value
+from card import Card
+from random import randint
 
+deck = {
+        1:{"mast":"Черви", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
+        2:{"mast":"Буби", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
+        3:{"mast":"Пики", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]},
+        4:{"mast":"Крести", "values":[6, 7, 8, 9, 10, 11, 12, 13, 14]}
+        }
 
-c1 = Card("asd", 10)
-c2 = Card("asd", 11)
+main_deck = []
 
-v = [c2, c1]
+koz = randint(1, 4)
 
-def sort_value(el):
-    return el.value
+for i in deck:
+    if i == koz:
+        for j in deck[i]["values"]:
+            main_deck.append(Card(deck[i]["mast"], j, True))
+    else:
+        for j in deck[i]["values"]:
+            main_deck.append(Card(deck[i]["mast"], j))
 
-print(v)
-
-v.sort(key=sort_value)
-
-print(v)
+print(main_deck)

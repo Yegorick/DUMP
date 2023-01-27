@@ -1,5 +1,4 @@
-from tkinter import Tk, Button, LEFT, CENTER, NW
-from PIL import ImageTk
+from tkinter import Tk, CENTER
 
 from hands import *
 from game import new_game

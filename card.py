@@ -26,7 +26,9 @@ class Card:
         return self.value > other.value
         
     def __eq__(self, other):
-        if not isinstance(other, Card):
+        if other == None:
+            return False
+        elif not isinstance(other, Card):
             raise TypeError("Нужно передать карту")
         
         return self.value == other.value
